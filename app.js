@@ -12,6 +12,14 @@ const searchSongs = async () => {
 }
 */
 
+// keyboard handler for search button
+document.getElementById('search-field')
+    .addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            document.getElementById('search-button').click();
+        }
+    });
+
 const searchSongs = () => {
     const searchText = document.getElementById('search-field').value;
     const url = `https://api.lyrics.ovh/suggest/${searchText}`
@@ -27,7 +35,6 @@ const displaySongs = songs => {
     // when search new song clean previous history(callback)
     songContainer.innerHTML = '';
     songs.forEach(song => {
-        // console.log(song);
         const songDiv = document.createElement('div');
         songDiv.className = 'single-result row align-items-center my-3 p-3';
         songDiv.innerHTML = `
